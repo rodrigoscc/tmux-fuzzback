@@ -53,11 +53,9 @@ fzf_popup_cmd() {
     --ansi \
     --bind="$2" \
     --delimiter=":" \
-    --layout="$3" \
     --no-multi \
     --print-query \
     --with-nth="3.." \
-    --color="$4" \
     --preview="$CURRENT_DIR/preview.sh $CAPTURE_FILENAME {}" \
     --preview-window="$preview_window"
 }
