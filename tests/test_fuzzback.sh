@@ -1,19 +1,24 @@
 #!/usr/bin/env bash
 
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-PATH=$PATH:~/.fzf/bin
+TEST_STATUS="success"
 
-# bash helpers provided by 'tmux-test'
-# shellcheck source=helpers/helpers.sh
-. "$CURRENT_DIR/helpers/helpers.sh"
-
-# installs plugin from current repo in Vagrant (or on Travis)
-install_tmux_plugin_under_test_helper
+fail_helper() {
+	local message="$1"
+	echo "$message" >&2
+	TEST_STATUS="fail"
+}
 
 TERM="tmux-256color"
 
 # Do tests with expect
-"$CURRENT_DIR/expect_fuzzback.exp" || fail_helper "Testing failed!"
+tests/expect_fuzzback.exp || fail_helper "Testing failed!"
 
-# sets the right script exit code ('tmux-test' helper)
-exit_helper
+if [ "$TEST_STATUS" == "fail" ]; then
+  echo "FAIL!"
+  echo
+  exit 1
+else
+  echo "SUCCESS"
+  echo
+  exit 0
+fi

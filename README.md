@@ -1,7 +1,7 @@
 # tmux-fuzzback
 
-[![Build Status](https://app.travis-ci.com/roosta/tmux-fuzzback.svg?branch=main)](https://app.travis-ci.com/github/roosta/tmux-fuzzback)
-[![GitHub](https://img.shields.io/badge/License-MIT-%232C78BF)](https://github.com/roosta/tmux-fuzzback/blob/master/LICENSE)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/roosta/tmux-fuzzback/test.yml?style=flat-square&logo=github)
+[![GitHub](https://img.shields.io/badge/License-MIT-%232C78BF?style=flat-square)](https://github.com/roosta/tmux-fuzzback/blob/master/LICENSE)
 
 tmux-fuzzback uses a fuzzy finder to search terminal scrollback buffer, and
 jump to selected position.
@@ -176,11 +176,13 @@ match can be found.
 
 ## Developing
 
-You can run tests locally using [Vagrant](https://www.vagrantup.com/) by calling:
+You can run tests locally using a [Containerfile](./Containerfile), in my case I use
+[Podman](https://podman.io/) to build and run.
 
 ```sh
 # cd project root
-./run_tests
+podman build -t fuzzback-test .
+podman run -it --name fuzzback-test fuzzback-test:latest
 ```
 
 ## License
