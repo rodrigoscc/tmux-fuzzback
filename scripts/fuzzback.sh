@@ -57,8 +57,8 @@ fzf_popup_cmd() {
     --print-query \
     --with-nth="3.." \
     --preview="$CURRENT_DIR/preview.sh $CAPTURE_FILENAME {}" \
-    --preview-window="$preview_window"
-	--no-sort
+    --preview-window="$preview_window" \
+    --no-sort
 }
 
 rev_cmd() {
